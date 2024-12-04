@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://s6rrfs17aphs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10t0e"]
+albedo_color = Color(0.803922, 0.803922, 0.803922, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cruc7"]
+material = SubResource("StandardMaterial3D_10t0e")
+size = Vector3(4, 0.1, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wubfs"]
+points = PackedVector3Array(-2, -0.05, -2, -2, 0.05, -2, 2, -0.05, -2, -2, -0.05, 2, -2, 0.05, 2, 2, 0.05, -2, 2, -0.05, 2, 2, 0.05, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mej6"]
+albedo_color = Color(0.839216, 0.227451, 0.160784, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wgk3o"]
+material = SubResource("StandardMaterial3D_3mej6")
+size = Vector3(4, 0.1, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qrtf2"]
+points = PackedVector3Array(-2.03175, -0.0817274, -2.03175, 2.03173, 0.108712, 2.03175, 2.03173, -0.0817274, 2.03175, 2.03173, 0.108712, -2.03175, -2.03175, 0.108712, 2.03175, -2.03175, -0.0817274, 2.03175, 2.03173, -0.0817274, -2.03175, -2.03175, 0.108712, -2.03175)
+
+[node name="SpaceLibrary" type="Node3D"]
+
+[node name="FreeSpace" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_cruc7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FreeSpace"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreeSpace/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_wubfs")
+
+[node name="TurretBase" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_wgk3o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TurretBase"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TurretBase/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_qrtf2")
