@@ -3,9 +3,9 @@ using System;
 
 public partial class Enemy : PathFollow3D
 {
-	[Export] float Speed = 2.5f;
+	[Export] public float Speed { get; private set;} = 2.5f;
 
-	private Base playerBase;
+	private Base _playerBase;
 
 
     public override void _Ready()
@@ -21,7 +21,7 @@ public partial class Enemy : PathFollow3D
 
 		if (this.ProgressRatio == 1.0f)
 		{
-			playerBase.TakeDamage();
+			_playerBase.TakeDamage();
 			SetProcess(false);
 			// QueueFree();
 		}
@@ -30,6 +30,6 @@ public partial class Enemy : PathFollow3D
 
 	private void Initialize()
 	{
-		playerBase = (Base)GetTree().GetFirstNodeInGroup(GameConstants.BASE);
+		_playerBase = (Base)GetTree().GetFirstNodeInGroup(GameConstants.BASE);
 	}
 }

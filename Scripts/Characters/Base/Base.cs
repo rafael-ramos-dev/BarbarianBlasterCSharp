@@ -4,9 +4,36 @@ using System.Linq;
 
 public partial class Base : Node3D
 {
-  [Export] int MaxHealth = 100;
+  [Export] public int MaxHealth { get; private set; } = 100;
 
-  private Label3D healthLabel;
+  private Label3D _healthLabel;
+
+  private int _currentHealth;
+
+  private int CurrentHealth
+  {
+    get => _currentHealth;
+    set
+    {
+      // To Update the internal value
+      _currentHealth = value;
+
+      if (_healthLabel.Text != null)
+      {
+        _healthLabel.Text = _currentHealth.ToString() + "/" + MaxHealth.ToString();
+
+        Color labelRed = Colors.Red;
+        Color labelWhite = Colors.White;
+        
+        _healthLabel.Modulate = labelRed.Lerp(labelWhite, (float)_currentHealth / (float)MaxHealth);
+      }
+
+      if (_currentHealth < 1)
+      {
+        GetTree().ReloadCurrentScene();
+      }
+    }
+  }
 
   // Ensure it runs before the _Ready method
   public override void _EnterTree()
@@ -18,20 +45,20 @@ public partial class Base : Node3D
 
 	  this.AddToGroup(GameConstants.BASE);
 
-    healthLabel = GetChildren().OfType<Label3D>().FirstOrDefault(x => x.Name == "HealthLabel");        
+    _healthLabel = GetChildren().OfType<Label3D>().FirstOrDefault(x => x.Name == "HealthLabel");        
   }
 
 
   public override void _Ready()
   {
-    healthLabel.Text = MaxHealth.ToString();
+    CurrentHealth = MaxHealth;
   }
 
 
   public void TakeDamage()
   {
-    MaxHealth -= 1;
-    healthLabel.Text = MaxHealth.ToString();
+    // Reduce health using the setter
+    CurrentHealth -= 1;
 
     GD.Print("Damage Dealt To Base!");
   }
