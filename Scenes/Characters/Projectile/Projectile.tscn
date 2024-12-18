@@ -10,12 +10,18 @@ material = SubResource("StandardMaterial3D_dfe2n")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_q40fh"]
 
-[node name="Projectile" type="Area3D"]
+[node name="Projectile" type="Area3D" node_paths=PackedStringArray("ProjectileLifeTimer")]
 top_level = true
 script = ExtResource("1_ixlst")
+ProjectileLifeTimer = NodePath("ProjectileLifeTimer")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_03c4b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_q40fh")
+
+[node name="ProjectileLifeTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true

@@ -7,9 +7,9 @@ public partial class Base : Node3D
   [Export] public int MaxHealth { get; private set; } = 100;
 
   private Label3D _healthLabel;
+  private int _damage = 1;
 
   private int _currentHealth;
-
   private int CurrentHealth
   {
     get => _currentHealth;
@@ -28,10 +28,7 @@ public partial class Base : Node3D
         _healthLabel.Modulate = labelRed.Lerp(labelWhite, (float)_currentHealth / (float)MaxHealth);
       }
 
-      if (_currentHealth < 1)
-      {
-        GetTree().ReloadCurrentScene();
-      }
+      if (_currentHealth < 1) { GetTree().ReloadCurrentScene(); }
     }
   }
 
@@ -39,9 +36,7 @@ public partial class Base : Node3D
   public override void _EnterTree()
   {
     foreach(Node node in GetTree().GetNodesInGroup(GameConstants.BASE))
-    {
-      node.RemoveFromGroup(GameConstants.BASE);
-    }
+      { node.RemoveFromGroup(GameConstants.BASE); }
 
 	  this.AddToGroup(GameConstants.BASE);
 
@@ -58,8 +53,6 @@ public partial class Base : Node3D
   public void TakeDamage()
   {
     // Reduce health using the setter
-    CurrentHealth -= 1;
-
-    GD.Print("Damage Dealt To Base!");
+    CurrentHealth -= _damage;
   }
 }

@@ -3,14 +3,18 @@ using System;
 using System.Linq;
 
 public partial class RayPickerCamera : Camera3D
-{
-	[Export] public float clickableRangeFromCamera { get; private set; } = 100.0f;
-
+{	
     [ExportGroup("Set In Level Scene")]
 	[Export] public GridMap gridMap;
 	[Export] public TurretManager turretManager;
 
+	[ExportGroup("Set In This Node Scene")]
+	[Export] public float clickableRangeFromCamera { get; private set; } = 100.0f;
+	[Export] public int turretCost { get; private set; } = 100;
+
 	public RayCast3D rayCast3DFromCamera;
+	
+	private Bank _bank;
 
 
     public override void _EnterTree()
@@ -18,8 +22,15 @@ public partial class RayPickerCamera : Camera3D
         rayCast3DFromCamera = GetChildren().OfType<RayCast3D>().FirstOrDefault(x => x.Name == "MouseRayCast3D");
     }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+
+    public override void _Ready()
+    {
+        _bank = (Bank)GetTree().GetFirstNodeInGroup(GameConstants.BANK);
+    }
+
+
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
 	{
 		Vector2 mousePosition = GetViewport().GetMousePosition();
 
@@ -34,9 +45,10 @@ public partial class RayPickerCamera : Camera3D
 		bool rayIsColliding = rayCast3DFromCamera.IsColliding();
 		GodotObject rayGetCollider = rayCast3DFromCamera.GetCollider();
 
-		if (rayIsColliding && rayGetCollider is GridMap)
+		if (rayIsColliding && rayGetCollider is GridMap && _bank.CurrentGold >= turretCost)
 		{	
 			Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
+
 			if (Input.IsActionJustPressed(GameConstants.LEFTMOUSECLICK))
 			{
 				Vector3 objectCollisionPoint = rayCast3DFromCamera.GetCollisionPoint();
@@ -48,10 +60,10 @@ public partial class RayPickerCamera : Camera3D
 					gridMap.SetCellItem(gridCell, 1);
 					Vector3 tilePosition = gridMap.MapToLocal(gridCell);
 					turretManager.BuildTurret(tilePosition);
+					_bank.CurrentGold -= turretCost;
 				}
 			}
 		}
-		else Input.SetDefaultCursorShape(Input.CursorShape.Arrow);
-
+		else { Input.SetDefaultCursorShape(Input.CursorShape.Arrow); }
 	}
 }
