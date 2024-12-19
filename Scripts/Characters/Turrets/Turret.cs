@@ -7,8 +7,10 @@ public partial class Turret : Node3D
 {
 	[Export] public PackedScene Projectile;
     [Export] public Timer ProjectileTimer;
-    [Export] public MeshInstance3D ProjectileSpawner;
+    [Export] public Node3D ProjectileSpawner;
     [Export] public AnimationPlayer AnimPlayer;
+    [Export] public Node3D Cannon;
+    [Export] public Node3D TurretBase;
     [Export] public float TurretRange = 10.0f;
 
     public Path3D enemyPath;
@@ -30,7 +32,7 @@ public partial class Turret : Node3D
         closestEnemyToBase = FindBestTarget(enemies);
 
         if (closestEnemyToBase != null)
-            { LookAt(closestEnemyToBase.GlobalPosition,Vector3.Up, true); }
+            { TurretBase.LookAt(closestEnemyToBase.GlobalPosition,Vector3.Up, true); }
     }
 
 
@@ -65,8 +67,8 @@ public partial class Turret : Node3D
             Projectile bullet = (Projectile)Projectile.Instantiate();
             AddChild(bullet);
             
-            bullet.GlobalPosition = ProjectileSpawner.GlobalPosition;
-            bullet.projectileDirection = GlobalTransform.Basis.Z;
+            bullet.GlobalPosition = Cannon.GlobalPosition;
+            bullet.projectileDirection = TurretBase.GlobalTransform.Basis.Z;
         }
     }
 }

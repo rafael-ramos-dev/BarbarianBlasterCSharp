@@ -7,7 +7,7 @@ public partial class EnemyPath : Path3D
     [Export] public PackedScene EnemyScene;
     [Export] public Timer EnemySpawnerTimer;
     [Export] public DifficultManager DifficultManager;
-    [Export] public CanvasLayer VictoryLayer;
+    [Export] public VictoryLayer VictoryLayer;
 
 
     public override void _Ready()
@@ -36,7 +36,7 @@ public partial class EnemyPath : Path3D
             foreach (PathFollow3D child in GetChildren().OfType<PathFollow3D>())
                 { return; }
                 
-            VictoryLayer.Visible = true;
+            VictoryLayer.Victory();
         }
     }
 

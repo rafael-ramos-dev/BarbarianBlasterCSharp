@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://12l8x73wjvk8"]
+[gd_scene load_steps=17 format=3 uid="uid://12l8x73wjvk8"]
 
 [ext_resource type="PackedScene" uid="uid://ddnsjop4qktsa" path="res://Scenes/RayPickerCamera/RayPickerCamera.tscn" id="1_q6ei3"]
 [ext_resource type="MeshLibrary" uid="uid://drv0h11apy5o8" path="res://Resources/MeshLibraries/SpaceLibrary.tres" id="1_yvi5f"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cd2tcb2qyh8nh" path="res://Scenes/Characters/Turrets/Turret.tscn" id="6_12umw"]
 [ext_resource type="Script" path="res://Scripts/UI/InGame/Bank.cs" id="8_28247"]
 [ext_resource type="PackedScene" uid="uid://dg2iijne4bwxn" path="res://Scenes/DifficultManager/DifficultManager.tscn" id="9_hg01m"]
+[ext_resource type="PackedScene" uid="uid://c0e0p8lvfpwmg" path="res://Scenes/UI/VictoryLayer.tscn" id="10_ypahj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x46ae"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -146,13 +147,4 @@ label_settings = SubResource("LabelSettings_hgo3m")
 
 [node name="DifficultManager" parent="." instance=ExtResource("9_hg01m")]
 
-[node name="VictoryLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="VictoryLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.588235)
+[node name="VictoryLayer" parent="." instance=ExtResource("10_ypahj")]

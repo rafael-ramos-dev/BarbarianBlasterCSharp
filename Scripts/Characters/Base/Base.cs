@@ -10,7 +10,7 @@ public partial class Base : Node3D
   private int _damage = 1;
 
   private int _currentHealth;
-  private int CurrentHealth
+  public int CurrentHealth
   {
     get => _currentHealth;
     set
