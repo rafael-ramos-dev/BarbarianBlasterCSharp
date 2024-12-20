@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfsqney37vlj5"]
+[gd_scene load_steps=4 format=3 uid="uid://bfsqney37vlj5"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Base/Base.cs" id="1_atnyt"]
+[ext_resource type="FontFile" uid="uid://7s7kyo4kesxb" path="res://Assets/Fonts/Asap/static/Asap-Bold.ttf" id="2_ef668"]
 [ext_resource type="PackedScene" uid="uid://crhs1fm645d2y" path="res://Assets/Base.glb" id="2_m8pdv"]
 
 [node name="Base" type="Node3D"]
@@ -11,6 +12,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
 billboard = 1
 text = "Base Health
 "
+font = ExtResource("2_ef668")
 font_size = 500
 outline_size = 100
 

@@ -4,14 +4,14 @@
 
 [sub_resource type="Curve" id="Curve_5o1xb"]
 min_value = 0.25
-max_value = 2.0
-_data = [Vector2(0, 2), 0.0, -1.75, 0, 1, Vector2(1, 0.25), -1.75, 0.0, 1, 0]
+max_value = 3.0
+_data = [Vector2(0, 3), 0.0, 0.107848, 0, 0, Vector2(1, 0.25), -6.43349, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_1isjw"]
 min_value = 10.0
 max_value = 150.0
-_data = [Vector2(0, 10), 0.0, 140.0, 0, 1, Vector2(1, 150), 140.0, 0.0, 1, 0]
+_data = [Vector2(0, 39.927), 0.0, 110.073, 0, 1, Vector2(1, 150), 110.073, 0.0, 1, 0]
 point_count = 2
 
 [node name="DifficultManager" type="Node" node_paths=PackedStringArray("DifficultTimer")]

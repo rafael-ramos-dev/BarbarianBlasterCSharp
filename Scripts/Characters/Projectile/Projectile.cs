@@ -5,10 +5,9 @@ public partial class Projectile : Area3D
 {
     [Export] public Timer ProjectileLifeTimer;
 	[Export] public float Speed { get; private set; } = 30.0f;
+    [Export] public int Damage = 25;
 
 	public Vector3 projectileDirection = Vector3.Forward;
-
-    private int _damage = 25;
 
 
     public override void _Ready()
@@ -28,7 +27,7 @@ public partial class Projectile : Area3D
     {
         if (area.IsInGroup("EnemyArea"))
         {
-            area.GetParent<Enemy>().CurrentHealth -= _damage;
+            area.GetParent<Enemy>().CurrentHealth -= Damage;
             QueueFree();
         }
     }

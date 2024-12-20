@@ -32,7 +32,7 @@ public partial class Turret : Node3D
         closestEnemyToBase = FindBestTarget(enemies);
 
         if (closestEnemyToBase != null)
-            { TurretBase.LookAt(closestEnemyToBase.GlobalPosition,Vector3.Up, true); }
+            { TurretBase.LookAt(closestEnemyToBase.GlobalPosition, Vector3.Up, true); }
     }
 
 

@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://s6rrfs17aphs"]
+[gd_scene load_steps=9 format=3 uid="uid://s6rrfs17aphs"]
+
+[ext_resource type="PackedScene" uid="uid://wlyy544ar0ib" path="res://Assets/Tree.glb" id="1_bh4c6"]
+[ext_resource type="PackedScene" uid="uid://b2pfajt5oxcbh" path="res://Assets/Rocks.glb" id="2_n580j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10t0e"]
-albedo_color = Color(0.803922, 0.803922, 0.803922, 1)
+blend_mode = 1
+albedo_color = Color(0.247059, 0.247059, 0.247059, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cruc7"]
 material = SubResource("StandardMaterial3D_10t0e")
@@ -11,7 +15,8 @@ size = Vector3(4, 0.1, 4)
 points = PackedVector3Array(-2, -0.05, -2, -2, 0.05, -2, 2, -0.05, -2, -2, -0.05, 2, -2, 0.05, 2, 2, 0.05, -2, 2, -0.05, 2, 2, 0.05, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mej6"]
-albedo_color = Color(0.839216, 0.227451, 0.160784, 1)
+transparency = 1
+albedo_color = Color(0.839216, 0.227451, 0.160784, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_wgk3o"]
 material = SubResource("StandardMaterial3D_3mej6")
@@ -37,3 +42,7 @@ mesh = SubResource("BoxMesh_wgk3o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TurretBase/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_qrtf2")
+
+[node name="Tree" parent="." instance=ExtResource("1_bh4c6")]
+
+[node name="Rocks" parent="." instance=ExtResource("2_n580j")]
